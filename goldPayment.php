@@ -151,7 +151,7 @@ foreach ($cart as $item) {
   </style>
 </head>
 <body>
-include('custHeaderGold.php'); ?>
+<?php include('custHeaderGold.php'); ?>
 
 <div class="payment-container">
   <button class="pay-button">Complete Your Payment</button>
