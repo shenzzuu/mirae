@@ -1,0 +1,82 @@
+/* Form Container */
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Heading & Intro */
+.contact-form h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #1d3557;
+}
+
+.contact-form .intro {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* Contact Info (optional section above form) */
+.contact-info {
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.contact-info a {
+  color: #457b9d;
+  text-decoration: none;
+}
+
+/* Input Groups */
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #1d3557;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: #1d3557;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #457b9d;
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 20px;
+  }
+}

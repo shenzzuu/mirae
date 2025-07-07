@@ -1,0 +1,120 @@
+/* registerPayment style */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f6f6f6;
+  margin: 0;
+  padding: 20px;
+}
+
+.payment-container {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.pay-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: black;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: none;
+}
+
+.google-pay {
+  background: #000;
+  margin-bottom: 20px;
+}
+
+.form-section {
+  border-top: 1px solid #ccc;
+  padding: 20px;
+}
+
+.form-section h3 {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.form-section h3 img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.pay-card-btn {
+  width: 100%;
+  background: #1a73e8;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.pay-card-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.alt-payment {
+  padding: 15px 20px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alt-payment img {
+  width: 25px;
+  margin-right: 10px;
+}
+
+.alt-payment input {
+  accent-color: #1a73e8;
+}
+/* registerPayment style */
+  
+    .user-summary {
+      background-color: #f4f4f4;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .user-summary h2 {
+      margin-bottom: 10px;
+    }
+
+    .user-summary p {
+      margin: 5px 0;
+    }
+  

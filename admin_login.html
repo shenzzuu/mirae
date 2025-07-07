@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Login - Miraé</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <!-- HEADER START -->
+  <header class="header" id="header">
+    <div class="nav-container">
+      <div class="logo">Miraé</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="membership.html">Membership</a>
+      </nav>
+
+        <div class="nav-dropdown">
+          <button class="nav-icon dropdown-btn" onclick="toggleDropdown(event)">👤</button>
+          <div class="dropdown-content" id="userDropdown">
+            <a href="admin_login.html">Admin Login</a>
+            <a href="login.html">User Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER END -->
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+
+      <!-- FORM START -->
+      <form action="admin_login.php" method="POST">
+         <div class="form-group">
+        <input type="text" name="username" placeholder="Username" required />
+         </div>
+
+          <div class="form-group">
+        <input type="password" name="password" placeholder="Password" required />
+          </div>
+         <button type="submit" class="login-button">Login</button>
+      </form>
+      <!-- FORM END -->
+
+    </div>
+  </div>
+
+  <script>
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      const dropdown = document.getElementById("userDropdown");
+      dropdown.classList.toggle("show");
+    }
+
+    window.onclick = function () {
+      const dropdown = document.getElementById("userDropdown");
+      if (dropdown.classList.contains("show")) {
+        dropdown.classList.remove("show");
+      }
+    };
+  </script>
+
+</body>
+</html>
+

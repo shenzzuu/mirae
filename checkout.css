@@ -1,0 +1,98 @@
+     body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3b7ddd;
+            color: white;
+        }
+
+        td {
+            color: #333;
+        }
+
+        .total-row td {
+            font-weight: bold;
+            background-color: #f2f2f2;
+        }
+
+        .empty-cart {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            color: #777;
+        }
+
+        .summary-note {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #444;
+        }
+
+        .upload-section {
+            width: 80%;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .upload-section h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        .upload-section form {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .upload-section input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            background-color: #3b7ddd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .message {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+  

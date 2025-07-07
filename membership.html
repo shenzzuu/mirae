@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miraé - Membership Plans</title>
+  <link rel="stylesheet" href="membership.css">
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="nav-container">
+      <div class="logo">Miraé</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="membership.html">Membership</a>
+      </nav>
+
+        <div class="nav-dropdown">
+          <button class="nav-icon dropdown-btn" onclick="toggleDropdown(event)">👤</button>
+          <div class="dropdown-content" id="userDropdown">
+            <a href="admin_login.html">Admin Login</a>
+            <a href="login.html">User Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Membership Plans Section -->
+  <div class="membership-container">
+    <h1>Choose Your Membership Plan</h1>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+      Join our premium membership program to enjoy exclusive benefits, discounts, and personalized skincare solutions.
+    </p>
+    
+    <div class="plans-grid">
+      <div class="plan-card bronze">
+        <h2 class="plan-name">Bronze</h2>
+        <div class="plan-price">RM29/month</div>
+        <ul class="plan-features">
+          <li>5% Discount on Product</li>
+          <li>1 Basic Treatment/6 months</li>
+          <li>Early access to sales</li>
+          <li>Monthly skincare tips</li>
+          <li>Basic customer support</li>
+        </ul>
+        <button class="select-button" onclick="selectPlan('bronze')">Select Plan</button>
+      </div>
+      
+      <div class="plan-card silver">
+        <h2 class="plan-name">Silver</h2>
+        <div class="plan-price">RM59/month</div>
+        <ul class="plan-features">
+          <li>10% Discount on Product</li>
+          <li>1 Standard Treatment/3 months</li>
+          <li>Free shipping on all orders</li>
+          <li>Exclusive member-only products</li>
+          <li>Priority customer support</li>
+          <li>Bi-monthly skincare consultation</li>
+        </ul>
+        <button class="select-button" onclick="selectPlan('silver')">Select Plan</button>
+      </div>
+      
+      <div class="plan-card gold">
+        <h2 class="plan-name">Gold</h2>
+        <div class="plan-price">RM99/month</div>
+        <ul class="plan-features">
+          <li>20% discount on all products</li>
+          <li>1 Premium Treatment/month</li>
+          <li>Free product sample (After Treatment)</li>
+          <li>Free express shipping</li>
+          <li>24/7 dedicated support</li>
+          <li>Monthly personalized skincare plan</li>
+        </ul>
+        <button class="select-button" onclick="selectPlan('gold')">Select Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectPlan(plan) {
+      localStorage.setItem('selectedPlan', plan);
+      window.location.href = `register.html?plan=${plan}`;
+    }
+
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      document.getElementById("userDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropdown-btn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          if (dropdowns[i].classList.contains('show')) {
+            dropdowns[i].classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Base Styles ===== */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f3f3;
+  color: #565c68;
+  line-height: 1.6;
+}
+
+/* ===== Header ===== */
+.header {
+  background: linear-gradient(135deg, #565c68 0%, #4a4f59 100%);
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* ===== Navigation Menu ===== */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu a {
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ===== Icons & Dropdown ===== */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.dropdown-content a {
+  color: #565c68;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.show {
+  display: block;
+}
+
+/* ===== Hero Image ===== */
+.hero-image {
+  max-width: 1200px;
+  margin: 7rem auto 2rem;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Membership Container ===== */
+.membership-container {
+  max-width: 1200px;
+  margin: 6rem auto 3rem;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #565c68;
+}
+
+/* ===== Plans Grid ===== */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* ===== Plan Card ===== */
+.plan-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(86, 92, 104, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(86, 92, 104, 0.2);
+}
+
+.plan-name {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #565c68;
+}
+
+.plan-price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #4a5568;
+}
+
+.plan-features {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.plan-features li {
+  list-style: none;
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.plan-features li:before {
+  content: "✓";
+  color: #48bb78;
+  position: absolute;
+  left: 0;
+}
+
+/* ===== Plan Button ===== */
+.select-button {
+  background: #565c68;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.select-button:hover {
+  background: #4a5568;
+  transform: translateY(-2px);
+}
+
+/* ===== Plan Tiers ===== */
+.gold {
+  border-top: 4px solid #ffd700;
+}
+
+.silver {
+  border-top: 4px solid #c0c0c0;
+}
+
+.bronze {
+  border-top: 4px solid #cd7f32;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,214 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout */
+body {
+  display: flex;
+  background-color: #f4f6f8;
+  color: #333;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #1d3557;
+  color: #fff;
+  padding-top: 2rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #f1faee;
+  transition: opacity 0.3s;
+}
+
+.sidebar.collapsed .sidebar-header h1 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.nav-menu a {
+  color: #f1faee;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  text-align: left;
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background-color: #457b9d;
+  padding-left: 2rem;
+}
+
+.sidebar.collapsed .nav-menu a {
+  text-align: center;
+  font-size: 0;
+  padding: 0.75rem 0;
+}
+
+.sidebar.collapsed .nav-menu a::before {
+  content: '•';
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #d65c76;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 220px;
+  transition: margin-left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 60px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  flex: 1 1 200px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 2rem;
+  color: #1d3557;
+}
+
+.card p {
+  margin-top: 0.5rem;
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+/* Table */
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.product-table th,
+.product-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.product-table th {
+  background-color: #1d3557;
+  color: #fff;
+}
+
+.product-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100px;
+    padding: 1rem 0.5rem;
+  }
+
+  .sidebar h1 {
+    font-size: 1rem;
+  }
+
+  .nav-menu a {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+}

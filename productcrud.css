@@ -1,0 +1,243 @@
+/* productcrud.css */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #374151;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #10b981;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #059669;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #3b82f6;
+}
+
+/* Product List Styles */
+
+.list-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.add-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.add-button:hover {
+  background-color: #2563eb;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+.product-table th {
+  background-color: #e2e8f0;
+  color: #333;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.thumb {
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.edit-btn {
+  background-color: #facc15;
+  color: #111827;
+}
+
+.edit-btn:hover {
+  background-color: #eab308;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+.no-image {
+  font-style: italic;
+  color: #9ca3af;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn {
+  background-color: #3b82f6;
+}
+
+.edit-btn {
+  background-color: #10b981;
+  margin-right: 6px;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.cart-link {
+  float: right;
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  background-color: #10b981;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.cart-link:hover {
+  background-color: #059669;
+}
+
+.member-benefits {
+  background-color: #f0f8ff;
+  border-left: 5px solid #b87333;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.member-benefits h3 {
+  margin-top: 0;
+  color: #444;
+}
+
+.member-benefits ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.member-benefits li {
+  margin: 6px 0;
+  font-size: 15px;
+}

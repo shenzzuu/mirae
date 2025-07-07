@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Miraé - Premium Skincare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">Miraé</div>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="index.html#products">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+                <a href="membership.html">Membership</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="search.html" class="nav-icon">🔍</a>
+                <a href="login.html" class="nav-icon">👤</a>
+                <a href="cart.html" class="nav-icon">🛒</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Product Content -->
+    <main class="products" style="padding-top: 6rem;">
+        <div class="products-container">
+            <h2 class="section-title">All Products</h2>
+            
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="sets">Sets</button>
+                <button class="filter-btn" data-category="moisturizers">Moisturizers</button>
+                <button class="filter-btn" data-category="cleansers">Cleansers</button>
+                <button class="filter-btn" data-category="sunscreen">Sunscreen</button>
+            </div>
+
+            <!-- Products Grid (expanded version of your index.html products) -->
+            <div class="products-grid">
+                <!-- Product cards from index.html plus more would go here -->
+                <!-- You can copy the product cards from your index.html and add more -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (loaded dynamically same as index.html) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript Files -->
+    <script src="scripts.js"></script>
+    <script>
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+        
+        // Product filtering functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Filtering logic would go here
+                const category = this.dataset.category;
+                // You would implement product filtering based on category
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miraé - Premium Skincare</title>
+    <link rel="stylesheet" href="styles.css">
+
+    
+</head>
+<body>
+ <!-- Header -->
+<header class="header" id="header">
+  <div class="nav-container">
+    <div class="logo">Miraé</div>
+
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#products">Products</a>
+      <a href="aboutUs.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="membership.html">Membership</a>
+    </nav>
+
+   
+    
+
+      <div class="nav-dropdown">
+        <button class="nav-icon dropdown-btn" onclick="toggleDropdown(event)">👤</button>
+          <div class="dropdown-content" id="userDropdown">
+            <a href="admin_login.html">Admin Login</a>
+            <a href="login.html">User Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+       <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Take <span>good care</span> of your skin.</h1>
+                <button class="cta-button" onclick="scrollToProducts()">Shop Now</button>
+            </div>
+           <div class="hero-image">
+  <img src="https://media.istockphoto.com/id/1352840704/photo/portrait-of-an-attractive-young-woman-applying-moisturiser-against-a-grey-background.jpg?s=612x612&w=0&k=20&c=z6cfjfErGPXFe3QtSoDy3MCf45ZlNowHA-xhfTVizLw=" alt="Skincare Model">
+</div>
+
+        </div>
+    </section>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="products-container">
+            <h2 class="section-title">Our Best Seller</h2>
+            <div class="products-grid">
+                 <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">ON SALE</div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3Crect fill='%234a5568' width='60' height='180' x='70' y='35' rx='8'/%3E%3Crect fill='%232d3748' width='55' height='20' x='72.5' y='40' rx='4'/%3E%3Crect fill='%234a5568' width='40' height='120' x='20' y='50' rx='6'/%3E%3Crect fill='%234a5568' width='45' height='140' x='135' y='40' rx='6'/%3E%3Ctext x='100' y='230' font-family='Arial' font-size='12' fill='%234a5568' text-anchor='middle'%3EMiraé Set%3C/text%3E%3C/svg%3E" alt="Miraé Brightening & Glow Set">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miraé Brightening & Glow Set</h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(4.9)</span>
+                        </div>
+                        <div class="product-price">RM127.50</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3Crect fill='%234a5568' width='80' height='120' x='60' y='65' rx='40'/%3E%3Crect fill='%232d3748' width='70' height='15' x='65' y='70' rx='7'/%3E%3Ctext x='100' y='230' font-family='Arial' font-size='12' fill='%234a5568' text-anchor='middle'%3EMiraé Moisturizer%3C/text%3E%3C/svg%3E" alt="Miraé Moisturizer">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miraé Moisturizer</h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(4.8)</span>
+                        </div>
+                        <div class="product-price">RM89.00</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3Crect fill='%234a5568' width='70' height='140' x='65' y='55' rx='8'/%3E%3Crect fill='%232d3748' width='60' height='20' x='70' y='60' rx='4'/%3E%3Ctext x='100' y='230' font-family='Arial' font-size='12' fill='%234a5568' text-anchor='middle'%3EMiraé
+                         Cleanser%3C/text%3E%3C/svg%3E" alt="Miraé Cleanser">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miraé Cleanser</h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(4.7)</span>
+                        </div>
+                        <div class="product-price">RM65.00</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">ON SALE</div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3Crect fill='%23daa520' width='120' height='40' x='40' y='80' rx='5'/%3E%3Ctext x='100' y='105' font-family='Arial' font-size='10' fill='white' text-anchor='middle'%3ETreasure Box%3C/text%3E%3Ctext x='100' y='230' font-family='Arial' font-size='12' fill='%234a5568' text-anchor='middle'%3EPremium Care%3C/text%3E%3C/svg%3E" alt="Miraé Set Premium Care">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miraé Set Premium Care (Treasure Box Edition)</h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(4.9)</span>
+                        </div>
+                        <div class="product-price">RM167.50</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">ON SALE</div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3Crect fill='%234a5568' width='55' height='160' x='72.5' y='45' rx='8'/%3E%3Crect fill='%234a5568' width='40' height='100' x='25' y='75' rx='6'/%3E%3Crect fill='%234a5568' width='45' height='120' x='135' y='65' rx='6'/%3E%3Crect fill='%234a5568' width='70' height='80' x='65' y='20' rx='35'/%3E%3Ctext x='100' y='230' font-family='Arial' font-size='12' fill='%234a5568' text-anchor='middle'%3EComplete Set%3C/text%3E%3C/svg%3E" alt="Miraé The Complete Set">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miraé Six Skincare Set</h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(5.0)</span>
+                        </div>
+                        <div class="product-price">RM245.75</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 250'%3E%3Crect fill='%234a5568' width='50' height='150' x='75' y='50' rx='6'/%3E%3Crect fill='%232d3748' width='45' height='15' x='77.5' y='55' rx='4'/%3E%3Ctext x='100' y='230' font-family='Arial' font-size='12' fill='%234a5568' text-anchor='middle'%3EMiraé Sunscreen%3C/text%3E%3C/svg%3E" alt="Miraé Sunscreen">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Miraé Sunscreen</h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(4.8)</span>
+                        </div>
+                        <div class="product-price">RM65.00</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Get Special Offers & News</h2>
+            <p>Get ahead of the crowd! Subscribe now and enjoy early access to promotions</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="text" class="form-input" placeholder="Nickname" required>
+                <input type="tel" class="form-input" placeholder="Phone" required>
+                <input type="email" class="form-input" placeholder="Email" required>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer will be inserted here by JavaScript -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+    <script>
+        // Load footer dynamically
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+     function toggleDropdown(event) {
+      event.stopPropagation();
+      document.getElementById('userDropdown').classList.toggle('show');
+    }
+
+    document.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('userDropdown');
+      if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Miraé - About Us</title>
+  <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="aboutUs.css">
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="nav-container">
+      <div class="logo">Miraé</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="membership.html">Membership</a>
+      </nav>
+
+
+
+        <div class="nav-dropdown">
+        <button class="nav-icon dropdown-btn" onclick="toggleDropdown(event)">👤</button>
+          <div class="dropdown-content" id="userDropdown">
+            <a href="admin_login.html">Admin Login</a>
+            <a href="login.html">User Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="about-container">
+      <h1>About Miraé</h1>
+
+      <p class="intro">
+        Miraé is a premium skincare brand devoted to enhancing your natural beauty through gentle, effective, and scientifically-backed products.
+      </p>
+
+      <h2>Our Mission</h2>
+      <p>
+        To help people embrace their natural glow with skincare that’s clean, powerful, and accessible. We believe beauty starts with self-love and confidence.
+      </p>
+
+      <h2>Our Story</h2>
+      <p>
+        Founded by a team of beauty experts and skincare scientists, Miraé was born from the desire to simplify skincare without compromising results. Our journey began in a small lab with a bold vision: to make skincare effective, inclusive, and deeply nourishing.
+      </p>
+
+      <h2>Our Promise</h2>
+      <ul>
+        <li>✔️ Clean, cruelty-free ingredients</li>
+        <li>✔️ Dermatologist-tested formulas</li>
+        <li>✔️ Designed for all skin types</li>
+        <li>✔️ Eco-conscious packaging</li>
+      </ul>
+
+      <h2>Why Choose Miraé?</h2>
+      <p>
+        Because your skin deserves the best. From our gentle cleansers to our nourishing serums, every product is crafted with care, transparency, and love.
+      </p>
+
+      <div class="about-cta">
+        <a href="index.html#products">Explore Our Products</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      document.getElementById("userDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropdown-btn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    };
+  </script>
+
+</body>
+</html>

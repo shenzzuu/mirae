@@ -1,0 +1,242 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #565c68;
+    padding: 15px 30px;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Navigation menu */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Right-side Icons */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* User dropdown icon */
+.nav-dropdown .nav-icon {
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 999;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show dropdown */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Product Section */
+.products {
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.products-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.products-grid {
+    display: grid;
+    /* Default for other sections, might be auto-fill */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Specific styling for the "Our Best Seller" grid */
+.products-grid.best-seller-grid {
+    grid-template-columns: repeat(3, 1fr); /* Force three columns for best sellers */
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-image {
+    position: relative;
+    padding: 20px; /* Add padding around the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Ensure a minimum height for image container */
+    background-color: #f9f9f9; /* Light background for image area */
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #F2B97B; /* Orange color from your image */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 10; /* Ensure badge is above image */
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 160px; /* Max height for the product image itself */
+    object-fit: contain; /* Ensure the entire image is visible within its container */
+    border-bottom: none; /* Remove previous border */
+}
+
+.product-info {
+    padding: 15px; /* Increase padding for more space */
+    text-align: center;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-rating {
+    font-size: 14px;
+    color: #FFD700; /* Gold color for stars */
+    margin-bottom: 10px;
+}
+
+.product-rating .stars {
+    letter-spacing: 2px; /* Space out the stars */
+}
+
+.product-price {
+    font-size: 20px; /* Make price more prominent */
+    font-weight: bold;
+    color: #F2B97B; /* Orange price color */
+    margin: 10px 0 15px 0; /* Adjust margins */
+}
+
+.add-to-cart {
+    background-color: #F2B97B;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #F1A84D;
+}
+
+/* Success popup styles */
+.success-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: none; /* Hidden by default */
+}
+
+.success-popup.show {
+    opacity: 1;
+    display: block;
+}

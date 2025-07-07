@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Miraé - Customer Profile</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo">Miraé</div>
+      <a href="index.html" class="back-button">← Back to Main Site</a>
+    </div>
+  </header>
+
+  <main class="profile-container">
+    <h1>Welcome, <span id="userName">Customer</span></h1>
+
+    <div class="profile-card">
+      <h2>Account Info</h2>
+      <p><strong>Email:</strong> <span id="userEmail">example@email.com</span></p>
+      <p><strong>Phone:</strong> <span id="userPhone">012-3456789</span></p>
+      <p><strong>Plan:</strong> <span id="userPlan">Silver Membership</span></p>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </main>
+
+  <script>
+    // You can fetch these from session storage or backend later
+    document.getElementById("userName").textContent = localStorage.getItem("userName") || "Customer";
+    document.getElementById("userEmail").textContent = localStorage.getItem("userEmail") || "email@example.com";
+    document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "012-3456789";
+    document.getElementById("userPlan").text

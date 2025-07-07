@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miraé - Membership Registration</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo">Miraé</div>
+    </div>
+  </header>
+
+  <div class="registration-container">
+    <h1>Complete Your Registration</h1>
+
+    <div id="planDisplay" class="plan-display"></div>
+    <div id="noPlanWarning" class="no-plan-warning" style="display: none;">
+      No membership plan selected! <a href="membership.html">Choose a plan first</a>
+    </div>
+
+    <!-- Updated: JS handles form submission -->
+    <form id="registrationForm" onsubmit="return handleRegistration();">
+      <input type="hidden" id="membershipPlan" name="membershipPlan" value="">
+
+      <div class="form-group">
+        <label for="fullName">Full Name*</label>
+        <input type="text" id="fullName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address*</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number*</label>
+        <input type="tel" id="phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Create Password*</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <button type="submit" class="register-button">Proceed to Payment</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    let plan = urlParams.get('plan')?.toLowerCase() || localStorage.getItem('selectedPlan')?.toLowerCase();
+
+    const planNames = {
+      gold: "Gold Membership (RM99/month)",
+      silver: "Silver Membership (RM59/month)",
+      bronze: "Bronze Membership (RM29/month)"
+    };
+
+    const planDisplay = document.getElementById('planDisplay');
+    const warning = document.getElementById('noPlanWarning');
+    const planInput = document.getElementById('membershipPlan');
+
+    if (plan && planNames[plan]) {
+      planDisplay.textContent = `Selected Plan: ${planNames[plan]}`;
+      planInput.value = plan.charAt(0).toUpperCase() + plan.slice(1);
+    } else {
+      planDisplay.style.display = 'none';
+      warning.style.display = 'block';
+    }
+
+    function handleRegistration() {
+      if (!planInput.value) {
+        alert("Please select a membership plan before registering.");
+        return false;
+      }
+
+      const registrationData = {
+        fullName: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        password: document.getElementById('password').value.trim(),
+        plan: planInput.value
+      };
+
+      localStorage.setItem('registrationData', JSON.stringify(registrationData));
+      window.location.href = "registerPayment.html";
+      return false; // Prevent default form submission
+    }
+  </script>
+</body>
+</html>
