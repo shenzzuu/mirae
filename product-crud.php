@@ -38,34 +38,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $editID = $_POST['prodID'] ?? null;
   $prodImage = null;
 
-  // ✅ Handle Image Upload
-  if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
-    $uploadDir = "uploads/";
-    if (!is_dir($uploadDir)) {
-      mkdir($uploadDir, 0777, true);
-    }
+ // ✅ Handle Image Upload
+if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
+  $uploadDir = "uploads/";
+  
+  // Create folder if it doesn't exist
+  if (!is_dir($uploadDir)) {
+    mkdir($uploadDir, 0755, true);
+  }
 
-    $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-    $tempName = uniqid('prod_') . '.' . $ext;
-    $tempPath = $uploadDir . $tempName;
+  $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+  $tempName = uniqid('prod_') . '.' . $ext;
+  $tempPath = $uploadDir . $tempName;
 
-    // Remove old image if editing
-    if ($editID) {
-      $stmt = $conn->prepare("SELECT prodImage FROM products WHERE prodID = ?");
-      $stmt->bind_param("i", $editID);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      $oldProduct = $result->fetch_assoc();
+  // Remove old image if editing
+  if ($editID) {
+    $stmt = $conn->prepare("SELECT prodImage FROM products WHERE prodID = ?");
+    $stmt->bind_param("i", $editID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $oldProduct = $result->fetch_assoc();
 
-      if ($oldProduct && !empty($oldProduct['prodImage']) && file_exists($oldProduct['prodImage'])) {
-        unlink($oldProduct['prodImage']);
-      }
-    }
-
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $tempPath)) {
-      $prodImage = $tempPath;
+    if ($oldProduct && !empty($oldProduct['prodImage']) && file_exists($oldProduct['prodImage'])) {
+      unlink($oldProduct['prodImage']);
     }
   }
+
+  if (move_uploaded_file($_FILES["image"]["tmp_name"], $tempPath)) {
+    $prodImage = $tempPath;
+  } else {
+    die("❌ Failed to move uploaded file. Check folder permissions or path.");
+  }
+}
 
   // ✅ Update or Insert
   if ($editID) {
