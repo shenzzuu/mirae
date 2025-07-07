@@ -1,3 +1,4 @@
+<?php // Ensure nothing is sent before this tag ?>
 <header class="nav-container">
     <div class="logo">
         <a href="gold.php">Miraé</a>
@@ -17,11 +18,11 @@
             </div>
         </div>
     </div>
-    </div>
 </header>
+
 <script>
     function toggleDropdown(event) {
         event.stopPropagation();
         document.getElementById('userDropdown').classList.toggle('show');
     }
-    </script>
+</script>
