@@ -5,7 +5,13 @@ if (!isset($_SESSION['admin'])) {
   exit();
 }
 
-$conn = new mysqli("localhost", "root", "", "skincare");
+$host = getenv("DB_HOST";
+$port = getenv("DB_PORT");
+$user = getenv("DB_USER");
+$pass = getenv("DB_PASS");
+$dbname = getenv("DB_NAME");
+
+$conn = new mysqli($host, $user, $pass, $dbname, (int)$port);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
@@ -16,10 +22,10 @@ function getCount($conn, $query) {
   return $res ? $res->fetch_assoc()['cnt'] : 0;
 }
 
-$customer_count    = getCount($conn, "SELECT COUNT(*) AS cnt FROM customer");
+$customer_count      = getCount($conn, "SELECT COUNT(*) AS cnt FROM customer");
 $appointments_count  = getCount($conn, "SELECT COUNT(*) AS cnt FROM appointments");
-$services_count = getCount($conn, "SELECT COUNT(*) AS cnt FROM services");
-$products_count    = getCount($conn, "SELECT COUNT(*) AS cnt FROM products");
+$services_count      = getCount($conn, "SELECT COUNT(*) AS cnt FROM services");
+$products_count      = getCount($conn, "SELECT COUNT(*) AS cnt FROM products");
 
 $members_sql = "SELECT id, full_name, email, phone, membership_plan, registered_at FROM customer ORDER BY registered_at DESC";
 $members_result = $conn->query($members_sql);
@@ -62,47 +68,47 @@ if (!$members_result) {
   </a>
 </div>
 
-
-  <h2 style="margin-top: 2rem;">Recent Registered Members</h2>
-  <div class="table-responsive">
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Membership Plan</th>
-          <th>Registered At</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php if ($members_result->num_rows > 0): ?>
-          <?php while ($row = $members_result->fetch_assoc()): ?>
-            <tr>
-              <td><?= htmlspecialchars($row['id']) ?></td>
-              <td><?= htmlspecialchars($row['full_name']) ?></td>
-              <td><?= htmlspecialchars($row['email']) ?></td>
-              <td><?= htmlspecialchars($row['phone']) ?></td>
-              <td><?= htmlspecialchars($row['membership_plan']) ?></td>
-              <td><?= htmlspecialchars($row['registered_at']) ?></td>
-            </tr>
-          <?php endwhile; ?>
-        <?php else: ?>
+<h2 style="margin-top: 2rem;">Recent Registered Members</h2>
+<div class="table-responsive">
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Membership Plan</th>
+        <th>Registered At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if ($members_result->num_rows > 0): ?>
+        <?php while ($row = $members_result->fetch_assoc()): ?>
           <tr>
-            <td colspan="6" class="no-data">No members found.</td>
+            <td><?= htmlspecialchars($row['id']) ?></td>
+            <td><?= htmlspecialchars($row['full_name']) ?></td>
+            <td><?= htmlspecialchars($row['email']) ?></td>
+            <td><?= htmlspecialchars($row['phone']) ?></td>
+            <td><?= htmlspecialchars($row['membership_plan']) ?></td>
+            <td><?= htmlspecialchars($row['registered_at']) ?></td>
           </tr>
-        <?php endif; ?>
-      </tbody>
-    </table>
-  </div>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <tr>
+          <td colspan="6" class="no-data">No members found.</td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
+</div>
 
 </div> <!-- End main-content -->
+
 <script>
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('collapsed');
-  }
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  sidebar.classList.toggle('collapsed');
+}
 </script>
 
 </body>
