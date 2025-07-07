@@ -2,20 +2,17 @@
 session_start();
 include('db.php');
 
-// Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-include('custHeaderSilver.php');
 
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'] ?? 'Silver Member';
-// Fetch all products (this is correct, as silver.php should show all)
+
 $query = "SELECT * FROM products";
 $result = $conn->query($query);
 
-// Handle add-to-cart (existing logic)
 $product_added = false;
 
 if (isset($_GET['prodID'])) {
@@ -59,6 +56,8 @@ if (isset($_GET['prodID'])) {
 if (isset($_GET['product_added'])) {
     $product_added = true;
 }
+
+include('custHeaderSilver.php');
 ?>
 
 <!DOCTYPE html>
