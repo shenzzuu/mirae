@@ -2,7 +2,14 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $conn = new mysqli("localhost", "root", "", "skincare");
+    // 🔐 External Railway DB connection
+    $host = getenv("DB_HOST");
+    $port = getenv("DB_PORT");
+    $user = getenv("DB_USER");
+    $pass = getenv("DB_PASS");
+    $dbname = getenv("DB_NAME");
+
+    $conn = new mysqli($host, $user, $pass, $dbname, (int)$port);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -21,14 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $result->fetch_assoc();
 
         if (password_verify($password, $user['password'])) {
-            // ✅ Store session data
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $email;
             $_SESSION['user_name'] = $user['full_name'];
             $_SESSION['membership_plan'] = strtolower($user['membership_plan']);
-            $_SESSION['membertype'] = 'member'; // ✅ Required for service.php access
+            $_SESSION['membertype'] = 'member';
 
-            // Redirect based on membership plan
             switch ($_SESSION['membership_plan']) {
                 case 'bronze':
                     header("Location: bronze_member.php");
