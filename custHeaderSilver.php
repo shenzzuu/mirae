@@ -1,3 +1,4 @@
+<?php // Do not remove this opening PHP tag – prevents "headers already sent" errors ?>
 <header class="nav-container">
     <div class="logo">
         <a href="silver.php">Miraé</a>
@@ -18,9 +19,15 @@
         </div>
     </div>
 </header>
+
 <script>
     function toggleDropdown(event) {
         event.stopPropagation();
         document.getElementById('userDropdown').classList.toggle('show');
     }
-    </script>
+
+    // Optional: close dropdown if clicked outside
+    document.addEventListener('click', function () {
+        document.getElementById('userDropdown')?.classList.remove('show');
+    });
+</script>
