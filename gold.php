@@ -7,15 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-include('custHeaderGold.php');
 
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'] ?? 'Gold Member';
-// Fetch all products (this is correct, as gold.php should show all)
-$query = "SELECT * FROM products";
-$result = $conn->query($query);
 
-// Handle add-to-cart (existing logic)
+// Handle add-to-cart logic BEFORE any output
 $product_added = false;
 
 if (isset($_GET['prodID'])) {
@@ -59,6 +55,13 @@ if (isset($_GET['prodID'])) {
 if (isset($_GET['product_added'])) {
     $product_added = true;
 }
+
+// ✅ Include header after redirect logic
+include('custHeaderGold.php');
+
+// Fetch all products
+$query = "SELECT * FROM products";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +69,8 @@ if (isset($_GET['product_added'])) {
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="customer.css">
-    <title>Miraé -  Gold Member</title>
+    <title>Miraé - Gold Member</title>
     <style>
-        /* Specific styles for the success popup */
         .success-popup {
             position: fixed;
             top: 20px;
@@ -82,28 +84,27 @@ if (isset($_GET['product_added'])) {
             z-index: 1001;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         .success-popup.show {
             opacity: 1;
             display: block;
         }
-        /* Adjusted .products-grid for a consistent layout (e.g., 3 columns) */
-        .products-grid { /* Removed .best-seller-grid class as all products will use this */
+
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             justify-content: center;
             padding: 20px;
         }
 
-        /* Specific styling for the badges for consistent look */
         .product-card .product-badge {
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: #F2B97B; /* Orange color from your image */
+            background-color: #F2B97B;
             color: white;
             padding: 5px 10px;
             border-radius: 5px;
@@ -112,43 +113,40 @@ if (isset($_GET['product_added'])) {
             text-transform: uppercase;
         }
 
-        /* Adjust product-info padding and text alignment to match the image */
         .product-card .product-info {
-            padding: 15px; /* Increase padding for more space */
-            text-align: center; /* Ensure text is centered */
+            padding: 15px;
+            text-align: center;
         }
 
         .product-card .product-name {
             font-size: 18px;
-            margin-bottom: 5px; /* Space between name and rating */
+            margin-bottom: 5px;
         }
 
         .product-card .product-rating {
-            margin-bottom: 10px; /* Space between rating and price */
+            margin-bottom: 10px;
         }
 
         .product-card .product-price {
-            font-size: 20px; /* Make price more prominent */
+            font-size: 20px;
             font-weight: bold;
-            color: #F2B97B; /* Orange price color */
-            margin-bottom: 15px; /* Space before add to cart button */
+            color: #F2B97B;
+            margin-bottom: 15px;
         }
 
         .product-card .add-to-cart {
-            width: 80%; /* Make button wider */
-            padding: 12px 0; /* Increase button padding */
+            width: 80%;
+            padding: 12px 0;
             font-size: 16px;
-            display: block; /* Make it a block element to center with margin auto */
-            margin: 0 auto; /* Center the button */
+            display: block;
+            margin: 0 auto;
         }
 
-        /* Additional styling for the stars */
         .product-rating .stars {
-            color: #FFD700; /* Gold color for stars */
-            letter-spacing: 2px; /* Space out the stars */
+            color: #FFD700;
+            letter-spacing: 2px;
         }
 
-        /* Styling for the View Cart button */
         .view-cart-button {
             display: flex;
             align-items: center;
@@ -170,7 +168,6 @@ if (isset($_GET['product_added'])) {
     </style>
 </head>
 <body>
-   
 
 <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
     <h2 style="margin: 0 auto; text-align: center; flex-grow: 1;">
@@ -181,46 +178,44 @@ if (isset($_GET['product_added'])) {
     </div>
 </div>
 
+<?php if ($product_added): ?>
+    <div id="success-popup" class="success-popup show">
+        <p>Product successfully added to your cart!</p>
+    </div>
+<?php endif; ?>
 
-    <?php if ($product_added): ?>
-        <div id="success-popup" class="success-popup show">
-            <p>Product successfully added to your cart!</p>
-        </div>
-    <?php endif; ?>
-
-    <section class="products" id="products">
-        <div class="products-container">
-            <h2 class="section-title">Our Best Seller</h2>
-            <div class="products-grid">
-                <?php while ($product = $result->fetch_assoc()): ?>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-badge">ON SALE</div>
-                            <img src="<?php echo htmlspecialchars($product['prodImage']); ?>" alt="<?php echo htmlspecialchars($product['prodName']); ?>" style="width: 100%; height: 200px; object-fit: cover;">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name"><?php echo htmlspecialchars($product['prodName']); ?></h3>
-                            <div class="product-rating">
-                                <span class="stars">⭐⭐⭐⭐⭐</span>
-                                <span>(4.9)</span>
-                            </div>
-                            <div class="product-price">RM <?php echo number_format($product['prodPrice'], 2); ?></div>
-                            <a href="gold.php?prodID=<?php echo htmlspecialchars($product['prodID']); ?>" class="add-to-cart">Add to Cart</a>
-                        </div>
+<section class="products" id="products">
+    <div class="products-container">
+        <h2 class="section-title">Our Best Seller</h2>
+        <div class="products-grid">
+            <?php while ($product = $result->fetch_assoc()): ?>
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">ON SALE</div>
+                        <img src="<?= htmlspecialchars($product['prodImage']) ?>" alt="<?= htmlspecialchars($product['prodName']) ?>" style="width: 100%; height: 200px; object-fit: cover;">
                     </div>
-                <?php endwhile; ?>
-            </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><?= htmlspecialchars($product['prodName']) ?></h3>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>(4.9)</span>
+                        </div>
+                        <div class="product-price">RM <?= number_format($product['prodPrice'], 2) ?></div>
+                        <a href="gold.php?prodID=<?= htmlspecialchars($product['prodID']) ?>" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </div>
+            <?php endwhile; ?>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        // Hide popup after 3 seconds
-        setTimeout(() => {
-            const popup = document.getElementById('success-popup');
-            if (popup) {
-                popup.classList.remove('show');
-            }
-        }, 3000);
-    </script>
+<script>
+    setTimeout(() => {
+        const popup = document.getElementById('success-popup');
+        if (popup) {
+            popup.classList.remove('show');
+        }
+    }, 3000);
+</script>
 </body>
 </html>
