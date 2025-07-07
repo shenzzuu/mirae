@@ -7,7 +7,7 @@
   <title>Admin Dashboard</title>
 
   <!-- ✅ External CSS -->
-  <link rel="stylesheet" href="admindash.css" />
+  <link rel="stylesheet" href="adminDash.css" />
 </head>
 
 <body>
