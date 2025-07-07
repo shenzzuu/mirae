@@ -79,7 +79,8 @@ function applyDiscount($price) {
     </style>
 </head>
 <body>
-include('custHeaderGold.php');
+<?php include('custHeaderGold.php'); ?>
+
 
 <div class="checkout-container">
     <h2>Checkout</h2>
