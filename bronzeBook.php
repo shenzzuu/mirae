@@ -1,10 +1,10 @@
 <?php
-include('custHeader.php');
+session_start(); 
 include('db.php');
-session_start();
+include('custHeader.php');
 
-$userID = $_SESSION['userID'] ?? 1; // fallback for demo only
-$serviceID = 5; // Bronze = Facial
+$userID = $_SESSION['userID'] ?? 1; 
+$serviceID = 5; 
 
 // Get fully booked dates for this service (3 or more)
 $query = "SELECT appointmentDate FROM appointments 
