@@ -1,3 +1,4 @@
+<?php // Prevents "headers already sent" when included ?>
 <header class="nav-container">
     <div class="logo">
         <a href="bronze_member.php">Miraé</a>
@@ -24,4 +25,9 @@
         event.stopPropagation();
         document.getElementById('userDropdown').classList.toggle('show');
     }
-    </script>
+
+    // Optional: close dropdown when clicking outside
+    document.addEventListener('click', function () {
+        document.getElementById('userDropdown')?.classList.remove('show');
+    });
+</script>
