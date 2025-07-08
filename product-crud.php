@@ -10,18 +10,26 @@ if (!isset($_SESSION['admin'])) {
 $action = $_GET['action'] ?? null;
 $prodID = $_GET['id'] ?? null;
 
-// ✅ DELETE PRODUCT + IMAGE
+// ✅ DELETE PRODUCT + IMAGE + PURCHASE RECORDS
 if ($action === 'delete' && $prodID) {
+  // Delete related purchases first
+  $stmt = $conn->prepare("DELETE FROM purchase WHERE prodID = ?");
+  $stmt->bind_param("i", $prodID);
+  $stmt->execute();
+
+  // Get image path
   $stmt = $conn->prepare("SELECT prodImage FROM products WHERE prodID = ?");
   $stmt->bind_param("i", $prodID);
   $stmt->execute();
   $result = $stmt->get_result();
   $product = $result->fetch_assoc();
 
+  // Delete image file
   if ($product && !empty($product['prodImage']) && file_exists($product['prodImage'])) {
     unlink($product['prodImage']);
   }
 
+  // Delete product
   $stmt = $conn->prepare("DELETE FROM products WHERE prodID = ?");
   $stmt->bind_param("i", $prodID);
   $stmt->execute();
@@ -38,38 +46,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $editID = $_POST['prodID'] ?? null;
   $prodImage = null;
 
- // ✅ Handle Image Upload
-if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
-  $uploadDir = "uploads/";
-  
-  // Create folder if it doesn't exist
-  if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0755, true);
-  }
+  // ✅ Handle Image Upload
+  if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
+    $uploadDir = "uploads/";
 
-  $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-  $tempName = uniqid('prod_') . '.' . $ext;
-  $tempPath = $uploadDir . $tempName;
+    if (!is_dir($uploadDir)) {
+      mkdir($uploadDir, 0755, true);
+    }
 
-  // Remove old image if editing
-  if ($editID) {
-    $stmt = $conn->prepare("SELECT prodImage FROM products WHERE prodID = ?");
-    $stmt->bind_param("i", $editID);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $oldProduct = $result->fetch_assoc();
+    $ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+    $tempName = uniqid('prod_') . '.' . $ext;
+    $tempPath = $uploadDir . $tempName;
 
-    if ($oldProduct && !empty($oldProduct['prodImage']) && file_exists($oldProduct['prodImage'])) {
-      unlink($oldProduct['prodImage']);
+    // Remove old image if editing
+    if ($editID) {
+      $stmt = $conn->prepare("SELECT prodImage FROM products WHERE prodID = ?");
+      $stmt->bind_param("i", $editID);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $oldProduct = $result->fetch_assoc();
+
+      if ($oldProduct && !empty($oldProduct['prodImage']) && file_exists($oldProduct['prodImage'])) {
+        unlink($oldProduct['prodImage']);
+      }
+    }
+
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $tempPath)) {
+      $prodImage = $tempPath;
+    } else {
+      die("❌ Failed to move uploaded file. Check folder permissions or path.");
     }
   }
-
-  if (move_uploaded_file($_FILES["image"]["tmp_name"], $tempPath)) {
-    $prodImage = $tempPath;
-  } else {
-    die("❌ Failed to move uploaded file. Check folder permissions or path.");
-  }
-}
 
   // ✅ Update or Insert
   if ($editID) {
@@ -133,6 +140,7 @@ if ($action === 'edit' && $prodID) {
 }
 ?>
 
+<!-- ✅ HTML & Form UI -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,22 +152,16 @@ if ($action === 'edit' && $prodID) {
       padding: 20px;
       flex-grow: 1;
     }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
+    h1 { margin-bottom: 20px; }
     .product-form {
       display: flex;
       flex-direction: column;
       max-width: 500px;
     }
-
     .product-form label {
       margin-bottom: 10px;
       font-weight: bold;
     }
-
     .product-form input[type="text"],
     .product-form input[type="number"],
     .product-form input[type="file"] {
@@ -170,7 +172,6 @@ if ($action === 'edit' && $prodID) {
       border-radius: 5px;
       width: 100%;
     }
-
     .product-form button {
       padding: 10px;
       background-color: #007bff;
@@ -181,21 +182,17 @@ if ($action === 'edit' && $prodID) {
       font-size: 14px;
       margin-bottom: 10px;
     }
-
     .product-form button:hover {
       background-color: #0056b3;
     }
-
     .cancel-link {
       color: #6c757d;
       text-decoration: none;
       font-size: 14px;
     }
-
     .cancel-link:hover {
       text-decoration: underline;
     }
-
     .toggle-btn {
       position: absolute;
       top: 15px;
@@ -208,7 +205,6 @@ if ($action === 'edit' && $prodID) {
       border-radius: 4px;
       cursor: pointer;
     }
-
     img.preview {
       margin-top: 10px;
       max-width: 100px;
