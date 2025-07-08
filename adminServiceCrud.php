@@ -1,6 +1,12 @@
 <?php
+session_start();
 include('db.php');
-include('adminHeader.php');
+
+// ✅ Protect admin access
+if (!isset($_SESSION['admin'])) {
+    header("Location: admin_login.html");
+    exit();
+}
 
 // Initialize variables
 $serviceID = '';
@@ -8,7 +14,7 @@ $serviceName = '';
 $serviceImage = '';
 $serviceDescription = '';
 
-// Load service for editing
+// ✅ Load service for editing
 if (isset($_GET['id'])) {
     $serviceID = $_GET['id'];
     $query = "SELECT * FROM services WHERE serviceID = $serviceID";
@@ -20,30 +26,36 @@ if (isset($_GET['id'])) {
     }
 }
 
-// Handle form submission
+// ✅ Handle form submission
 if (isset($_POST['submit'])) {
     $serviceName = $_POST['serviceName'];
     $serviceDescription = $_POST['serviceDescription'];
     $image = $serviceImage;
 
-    // Handle image upload
+    // ✅ Handle image upload
     if (!empty($_FILES['serviceImage']['name'])) {
-        $image = $_FILES['serviceImage']['name'];
-        $target = "uploads/" . basename($image);
+        $image = basename($_FILES['serviceImage']['name']);
+        $target = "uploads/" . $image;
+
+        // Create directory if not exists
+        if (!is_dir("uploads")) {
+            mkdir("uploads", 0777, true);
+        }
+
         move_uploaded_file($_FILES['serviceImage']['tmp_name'], $target);
     }
 
-    // Update or insert
     if (!empty($_POST['serviceID'])) {
+        // ✅ Update existing service
         $update = "UPDATE services SET 
-            serviceName = '$serviceName', 
-            
-            serviceDesc = '$serviceDescription', 
-            serviceImage = '$image' 
+            serviceName = '$serviceName',
+            serviceDesc = '$serviceDescription',
+            serviceImage = '$image'
             WHERE serviceID = " . $_POST['serviceID'];
         mysqli_query($conn, $update);
     } else {
-        $insert = "INSERT INTO services (serviceName,  serviceDesc, serviceImage) 
+        // ✅ Insert new service
+        $insert = "INSERT INTO services (serviceName, serviceDesc, serviceImage) 
                    VALUES ('$serviceName', '$serviceDescription', '$image')";
         mysqli_query($conn, $insert);
     }
@@ -57,7 +69,8 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $serviceID ? 'Edit' : 'Add'; ?> Service</title>
+    <title><?= $serviceID ? 'Edit' : 'Add'; ?> Service</title>
+    <link rel="stylesheet" href="adminDash.css">
     <style>
         body {
             margin: 0;
@@ -137,29 +150,46 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="form-container">
-            <h2><?php echo $serviceID ? 'Edit' : 'Add'; ?> Service</h2>
-            <form method="post" enctype="multipart/form-data">
-                <input type="hidden" name="serviceID" value="<?php echo htmlspecialchars($serviceID); ?>">
+<!-- ✅ Sidebar + Header -->
+<?php include('adminHeader.php'); ?>
+<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-                <label for="serviceName">Service Name:</label>
-                <input type="text" id="serviceName" name="serviceName" required value="<?php echo htmlspecialchars($serviceName); ?>">
+<!-- ✅ Main Content -->
+<div class="main-content">
+    <div class="form-container">
+        <h2><?= $serviceID ? 'Edit' : 'Add'; ?> Service</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="serviceID" value="<?= htmlspecialchars($serviceID); ?>">
 
-                <label for="serviceDescription">Description:</label>
-                <textarea id="serviceDescription" name="serviceDescription" rows="4" required><?php echo htmlspecialchars($serviceDescription); ?></textarea>
+            <label for="serviceName">Service Name:</label>
+            <input type="text" id="serviceName" name="serviceName" required value="<?= htmlspecialchars($serviceName); ?>">
 
-                <label for="serviceImage">Image:</label>
-                <input type="file" id="serviceImage" name="serviceImage">
-                <?php if ($serviceImage): ?>
-                    <img src="uploads/<?php echo htmlspecialchars($serviceImage); ?>" alt="Service Image">
-                <?php endif; ?>
+            <label for="serviceDescription">Description:</label>
+            <textarea id="serviceDescription" name="serviceDescription" rows="4" required><?= htmlspecialchars($serviceDescription); ?></textarea>
 
-                <button type="submit" name="submit">Save</button>
-            </form>
-        </div>
+            <label for="serviceImage">Image:</label>
+            <input type="file" id="serviceImage" name="serviceImage">
+            <?php if ($serviceImage): ?>
+                <img src="uploads/<?= htmlspecialchars($serviceImage); ?>" alt="Service Image">
+            <?php endif; ?>
+
+            <button type="submit" name="submit">Save</button>
+        </form>
     </div>
+</div>
+
+<script>
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const toggleBtn = document.querySelector('.toggle-btn');
+
+    sidebar.classList.toggle('collapsed');
+    mainContent.classList.toggle('collapsed');
+
+    toggleBtn.style.left = sidebar.classList.contains('collapsed') ? '80px' : '270px';
+}
+</script>
 
 </body>
 </html>
